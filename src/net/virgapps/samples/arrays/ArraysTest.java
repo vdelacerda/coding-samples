@@ -16,30 +16,31 @@ public class ArraysTest {
     @Before
     public void init() {
         tableau = ArraysFactory.creerTableauRandom(10, 100);
-        System.out.println(Arrays.toString(tableau));
+        System.out.println("Tableau aléatoire : " + Arrays.toString(tableau));
     }
     
-    /*@Test
+    @Test
     public void testMaxLin() {
-        int max = TableauUtil.maxLin(tableau);
-        assertTrue(max == 7);
-    }*/
+        int max = ArraysFactory.maxLin(tableau);
+        Arrays.sort(tableau);
+        assertTrue(max == tableau[tableau.length - 1]);
+    }
     
     @Test
     public void testTriSelection() {
+    	System.out.println("** Tri de type Selection **");
     	int[] tableauTrie = ArraysFactory.triSelection(tableau);
     	Arrays.sort(tableau);
-    	System.out.println(Arrays.toString(tableau));
-    	System.out.println(Arrays.toString(tableauTrie));
+    	System.out.println("Tableau trié      : " + Arrays.toString(tableauTrie));
     	assertTrue(Arrays.equals(tableauTrie, tableau));
     }
     
     @Test
     public void testTriFusion() {
+    	System.out.println("** Tri de type Fusion **");
     	int[] tableauTrie = ArraysFactory.triFusion(tableau);
     	Arrays.sort(tableau);
-    	System.out.println(Arrays.toString(tableau));
-    	System.out.println(Arrays.toString(tableauTrie));
+    	System.out.println("Tableau trié      : " + Arrays.toString(tableauTrie));
     	assertTrue(Arrays.equals(tableauTrie, tableau));
     }
 }

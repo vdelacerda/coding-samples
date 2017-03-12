@@ -4,6 +4,12 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class ArraysFactory {
+	/**
+	 * Créé un tableau d'entiers aléatoires
+	 * @param size : taille du tableau
+	 * @param max : valeur maximale des entiers
+	 * @return un tableau d'entiers
+	 */
     public static int[] creerTableauRandom(int size, int max) {
         int[] result = new int[size];
         
@@ -45,8 +51,11 @@ public class ArraysFactory {
     
     public static int[] triFusion(int[] tab) {
     	int[] result = {};
+    	
+    	// le tableau est scindée en deux parties jusqu'à qu'il ne soit constitué que d'un seul élément
     	if (tab.length > 1) {
     		int milieu = tab.length / 2;
+    		// application récursive de la fonction chaque sous-tableau
     		int[] tab1 = triFusion(Arrays.copyOfRange(tab, 0, milieu));
     		int[] tab2 = triFusion(Arrays.copyOfRange(tab, milieu, tab.length));
     		result = fusionner(tab1, tab2);
@@ -75,8 +84,8 @@ public class ArraysFactory {
     		index++;
     	}
     	
-		for (; i < tab1.length; i++) {
-			result[index++] = tab1[i];
+    	for (; i < tab1.length; i++) {
+    		result[index++] = tab1[i];
 		}
 		for (; j < tab2.length; j++) {
 			result[index++] = tab2[j];
