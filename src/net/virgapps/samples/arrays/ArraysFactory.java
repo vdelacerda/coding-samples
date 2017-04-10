@@ -94,7 +94,15 @@ public class ArraysFactory {
     	return result;
     }
     
+    /**
+     * Retourne l'element majoritaire du tableau, null s'il n'y en existe pas
+     * @param tab : le tableau a parcourir
+     * @param debut
+     * @param fin
+     * @return
+     */
     public static Integer majoritaire(int[] tab, int debut, int fin) {
+    	// la tableau a une dimension, il y a donc un element majoritaire, le seul element du tableau
     	if (debut == fin) {
     		return tab[debut];
     	}
