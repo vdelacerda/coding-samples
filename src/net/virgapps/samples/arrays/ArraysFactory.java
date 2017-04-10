@@ -93,4 +93,76 @@ public class ArraysFactory {
     	
     	return result;
     }
+    
+    public static Integer majoritaire(int[] tab) {
+    	if (tab.length == 1) {
+    		return tab[0];
+    	}
+    	else {
+    		int half = tab.length / 2;
+    		Integer x = majoritaire(Arrays.copyOfRange(tab, 0, half));
+    		Integer y = majoritaire(Arrays.copyOfRange(tab, half, tab.length));
+    		if (x == null && y == null) {
+    			return null;
+    		}
+    		else {
+    			if (x != null && y != null) {
+    				if (x == y) {
+    					return x;
+    				}
+    				else {
+    					int nbX = occurences(x, tab);
+    					int nbY = occurences(y, tab);
+    					if (nbX > nbY) {
+    						return x;
+    					}
+    					else {
+    						if (nbY > nbX) {
+    							return y;
+    						}
+    						else {
+    							return null;
+    						}
+    					}
+    				}
+    			}
+    			else {
+    				if (x != null) {
+    					if (occurences(x, tab) > tab.length / 2) {
+    						return x;
+    					}
+    					else {
+    						return null;
+    					}
+    				}
+    				else {
+    					if (occurences(y, tab) > tab.length / 2) {
+    						return y;
+    					}
+    					else {
+    						return null;
+    					}
+    				}
+    			}
+    		}
+    	}
+    }
+
+    /**
+     * Retourne le nombre d'occurences d'un entier dans un tableau
+     * @param nb
+     * @param tab
+     * @return
+     */
+    public static int occurences(int nb, int[] tab) {
+    	int occurence = 0;
+    	if (tab != null && tab.length > 0) {
+    		for (int i = 0; i < tab.length; i++) {
+    			if (tab[i] == nb) {
+    				occurence++;
+    			}
+    		}
+    	}
+    	return occurence;
+    }
 }

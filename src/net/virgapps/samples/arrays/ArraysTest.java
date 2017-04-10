@@ -43,4 +43,10 @@ public class ArraysTest {
     	System.out.println("Tableau trié      : " + Arrays.toString(tableauTrie));
     	assertTrue(Arrays.equals(tableauTrie, tableau));
     }
+    
+    @Test
+    public void testMajoritaire() {
+    	int[] tab = {1, 2, 2, 2, 2, 3, 4, 2};
+    	assertTrue(2 == ArraysFactory.majoritaire(tab));
+    }
 }
