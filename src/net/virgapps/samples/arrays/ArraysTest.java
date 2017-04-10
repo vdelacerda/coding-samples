@@ -46,7 +46,9 @@ public class ArraysTest {
     
     @Test
     public void testMajoritaire() {
-    	int[] tab = {1, 2, 2, 2, 2, 3, 4, 2};
-    	assertTrue(2 == ArraysFactory.majoritaire(tab));
+    	int[] tab = new int[]{1, 2, 2, 2, 2, 3, 4, 2};
+    	assertTrue(2 == ArraysFactory.majoritaire(tab, 0, 7));
+    	tab = new int[]{1, 2, 5, 6, 2, 3, 4, 2};
+    	assertTrue(null == ArraysFactory.majoritaire(tab, 0, 7));
     }
 }

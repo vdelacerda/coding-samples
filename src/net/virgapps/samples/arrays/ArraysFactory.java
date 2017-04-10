@@ -94,58 +94,55 @@ public class ArraysFactory {
     	return result;
     }
     
-    public static Integer majoritaire(int[] tab) {
-    	if (tab.length == 1) {
-    		return tab[0];
+    public static Integer majoritaire(int[] tab, int debut, int fin) {
+    	if (debut == fin) {
+    		return tab[debut];
     	}
-    	else {
-    		int half = tab.length / 2;
-    		Integer x = majoritaire(Arrays.copyOfRange(tab, 0, half));
-    		Integer y = majoritaire(Arrays.copyOfRange(tab, half, tab.length));
-    		if (x == null && y == null) {
-    			return null;
-    		}
-    		else {
-    			if (x != null && y != null) {
-    				if (x == y) {
-    					return x;
-    				}
-    				else {
-    					int nbX = occurences(x, tab);
-    					int nbY = occurences(y, tab);
-    					if (nbX > nbY) {
-    						return x;
-    					}
-    					else {
-    						if (nbY > nbX) {
-    							return y;
-    						}
-    						else {
-    							return null;
-    						}
-    					}
-    				}
-    			}
-    			else {
-    				if (x != null) {
-    					if (occurences(x, tab) > tab.length / 2) {
-    						return x;
-    					}
-    					else {
-    						return null;
-    					}
-    				}
-    				else {
-    					if (occurences(y, tab) > tab.length / 2) {
-    						return y;
-    					}
-    					else {
-    						return null;
-    					}
-    				}
-    			}
-    		}
-    	}
+		Integer x = majoritaire(tab, debut, (debut + fin - 1) / 2);
+		Integer y = majoritaire(tab, (debut + fin + 1) / 2, fin);
+		if (x == null && y == null) {
+			return null;
+		}
+		else {
+			if (x != null && y != null) {
+				if (x == y) {
+					return x;
+				}
+				else {
+					int nbX = occurences(x, tab, debut, fin);
+					int nbY = occurences(y, tab, debut, fin);
+					if (nbX > nbY) {
+						return x;
+					}
+					else {
+						if (nbY > nbX) {
+							return y;
+						}
+						else {
+							return null;
+						}
+					}
+				}
+			}
+			else {
+				if (x != null) {
+					if (occurences(x, tab, debut, fin) > (fin - debut + 1) / 2) {
+						return x;
+					}
+					else {
+						return null;
+					}
+				}
+				else {
+					if (occurences(y, tab, debut, fin) > (fin - debut + 1) / 2) {
+						return y;
+					}
+					else {
+						return null;
+					}
+				}
+			}
+		}
     }
 
     /**
@@ -154,10 +151,10 @@ public class ArraysFactory {
      * @param tab
      * @return
      */
-    public static int occurences(int nb, int[] tab) {
+    public static int occurences(int nb, int[] tab, int debut, int fin) {
     	int occurence = 0;
     	if (tab != null && tab.length > 0) {
-    		for (int i = 0; i < tab.length; i++) {
+    		for (int i = debut; i < fin + 1; i++) {
     			if (tab[i] == nb) {
     				occurence++;
     			}
